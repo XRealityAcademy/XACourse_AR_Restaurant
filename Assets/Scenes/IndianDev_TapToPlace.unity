@@ -185,11 +185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1740518346929328276, guid: 3e4fea159512f4048805c6188837ad66, type: 3}
   m_PrefabInstance: {fileID: 75041072}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &75041074 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1740518346929328272, guid: 3e4fea159512f4048805c6188837ad66, type: 3}
-  m_PrefabInstance: {fileID: 75041072}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &118720727
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304970203}
   - component: {fileID: 304970202}
-  - component: {fileID: 304970204}
-  - component: {fileID: 304970205}
+  - component: {fileID: 304970206}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -429,7 +423,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &304970204
+--- !u!114 &304970206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -438,25 +432,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 304970201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa17d122634046b4a8e23048891fafc5, type: 3}
+  m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RaycastPrefab: {fileID: 75041074}
---- !u!114 &304970205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304970201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1496f5af44e4945a1b8801ac3176103d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  positionIndicator: {fileID: 1110039562}
-  prefabtoPlace: {fileID: 281504231247806985, guid: b7fe724460b4d44b29a5998690362d61, type: 3}
-  aRCamera: {fileID: 166617635}
+  m_PlanePrefab: {fileID: 581200216775539324, guid: 9cf9dfd6a802e47beba9f75724d79726, type: 3}
+  m_DetectionMode: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1110039563
 Transform:
   m_ObjectHideFlags: 0

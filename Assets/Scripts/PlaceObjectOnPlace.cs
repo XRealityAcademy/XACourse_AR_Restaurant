@@ -16,6 +16,7 @@ public class PlaceObjectOnPlace : MonoBehaviour
     public GameObject prefabtoPlace;
     public Camera aRCamera;
 
+    private GameObject currentlyPlaced;
 
     private void Awake()
     {
@@ -63,7 +64,9 @@ public class PlaceObjectOnPlace : MonoBehaviour
 
     private void PlaceObject()
     {
-        Instantiate(prefabtoPlace, placementPose.position, placementPose.rotation);
+        if (currentlyPlaced != null) return;
+
+        currentlyPlaced = Instantiate(prefabtoPlace, placementPose.position, placementPose.rotation);
     }
 
 
