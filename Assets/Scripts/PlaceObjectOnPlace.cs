@@ -10,11 +10,11 @@ public class PlaceObjectOnPlace : MonoBehaviour
 
     private ARRaycastManager raycastManager;
     private Pose placementPose;
-    private bool placementPoseIsValid;
+    private bool canPlace;
 
-    public GameObject positionIndicator;
-    public GameObject prefabtoPlace;
+    public GameObject drinkPrefab;
     public Camera aRCamera;
+    public float minDistance;
 
     private GameObject currentlyPlaced;
 
@@ -28,7 +28,9 @@ public class PlaceObjectOnPlace : MonoBehaviour
     {
         UpdatePlacementPose();
 
-        if(placementPoseIsValid && Input.touchCount >0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        float dist = Vector3.Distance(placementPose.position, aRCamera.transform.position);
+
+        if(canPlace && dist > minDistance)
         {
             PlaceObject();
         }
@@ -42,33 +44,30 @@ public class PlaceObjectOnPlace : MonoBehaviour
         var hits = new List<ARRaycastHit>();
         raycastManager.Raycast(screenCenter, hits, TrackableType.AllTypes);
 
-        placementPoseIsValid = hits.Count > 0;
+        canPlace = hits.Count > 0;
 
-        if(placementPoseIsValid)
-        {
-            //The placementPosition = the first ray hit the plane
-            placementPose = hits[0].pose;
-            var cameraForward = aRCamera.transform.forward;
-            var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+        if (!canPlace) return;
+        
+        //The placementPosition = the first ray hit the plane
+        placementPose = hits[0].pose;
+        var cameraForward = aRCamera.transform.forward;
+        var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
 
-            placementPose.rotation = Quaternion.LookRotation(cameraBearing);
-            positionIndicator.SetActive(true);
-            positionIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
-        }
-        else
-        {
-            positionIndicator.SetActive(false);
-        }
-
+        placementPose.rotation = Quaternion.LookRotation(cameraBearing);
     }
 
     private void PlaceObject()
     {
         if (currentlyPlaced != null) return;
-
-        currentlyPlaced = Instantiate(prefabtoPlace, placementPose.position, placementPose.rotation);
+        // TODO: Find selected drink
+        currentlyPlaced = Instantiate(drinkPrefab, placementPose.position, placementPose.rotation);
     }
 
-
-
+    public void UpdateModel(GameObject model)
+    {
+        Destroy(currentlyPlaced);
+        currentlyPlaced = null;
+        drinkPrefab = model;
+        PlaceObject();
+    }
 }

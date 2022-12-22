@@ -8,9 +8,8 @@ public class ScrollMenu : MonoBehaviour
     [SerializeField] private Transform content;
     [SerializeField] private Transform middle;
     [SerializeField] private Transform centerPos;
+    [SerializeField] private PlaceObjectOnPlace objectPlacing;
     private Transform closest;
-    private GameObject currentModel;
-
 
 
     //private float middlex;
@@ -54,7 +53,7 @@ public class ScrollMenu : MonoBehaviour
         {
             closest = closestObject;
 
-            OnNewClosestObject();
+            OnNewClosestObject(closestObject.GetComponent<ItemData>());
 
         }
 
@@ -71,19 +70,8 @@ public class ScrollMenu : MonoBehaviour
        
     }
 
-    public void OnNewClosestObject()
+    public void OnNewClosestObject(ItemData item)
     {
-        //If I know the closest, every game object has a transform. GetComponent<>() goes back to the top gameObject level
-
-        Destroy(currentModel);
-
-
-        GameObject model = closest.GetComponent<ItemData>().itemModel;
-        currentModel = Instantiate(model, centerPos.position, Quaternion.identity);
-
-
-
-
-
+        objectPlacing.UpdateModel(item.itemModel);
     }
 }
