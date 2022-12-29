@@ -9,5 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/ARMenuTest.unity
     guid: d53fa202b67754bb981bbbc1bcf1bca7
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 0150f77ca04813c4bb888c63c3d33a90, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 702b2738a91dd41e78191338d642eef5, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 02148cfd24feb4e0d88b81c40fd4529c, type: 2}

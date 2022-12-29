@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,17 +8,20 @@ public class ScrollMenu : MonoBehaviour
 {
     [SerializeField] private Transform content;
     [SerializeField] private Transform middle;
-    [SerializeField] private Transform centerPos;
+    [SerializeField] private float selectedSize;
     [SerializeField] private PlaceObjectOnPlace objectPlacing;
+    [SerializeField] private RectTransform selectedIndicator;
+    [SerializeField] private TextMeshProUGUI selectedItemDisplay;
+    
     private Transform closest;
 
-
-    //private float middlex;
-
+    
     private void Awake()
     {
-       // middlex = Screen.width * 0.5f;
-        //print(middlex);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).localScale = Vector3.one;
+        }
     }
 
     // Update is called once per frame
@@ -26,6 +30,10 @@ public class ScrollMenu : MonoBehaviour
         float minDistance = float.MaxValue;
         Transform closestObject = null;
 
+        if (closest != null)
+            selectedIndicator.position = closest.position;
+        else
+            selectedIndicator.gameObject.SetActive(false);
 
         for (int i = 0; i< content.childCount; i++)
         {
@@ -54,10 +62,9 @@ public class ScrollMenu : MonoBehaviour
             closest = closestObject;
 
             OnNewClosestObject(closestObject.GetComponent<ItemData>());
-
         }
 
-        closestObject.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        closestObject.localScale = new Vector3(selectedSize, selectedSize, selectedSize);
 
 
         for (int i = 0; i < content.childCount; i++)
@@ -72,6 +79,8 @@ public class ScrollMenu : MonoBehaviour
 
     public void OnNewClosestObject(ItemData item)
     {
+        selectedItemDisplay.text = item.itemName != "" ? item.itemName : "-";
+        selectedIndicator.gameObject.SetActive(true);
         objectPlacing.UpdateModel(item.itemModel);
     }
 }
