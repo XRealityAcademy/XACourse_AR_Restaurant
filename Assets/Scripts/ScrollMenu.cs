@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScrollMenu : MonoBehaviour
 {
+    [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Transform content;
     [SerializeField] private Transform middle;
     [SerializeField] private float selectedSize;
@@ -15,6 +14,7 @@ public class ScrollMenu : MonoBehaviour
     
     private Transform closest;
 
+    public ItemData SelectedItem => closest.GetComponent<ItemData>();
     
     private void Awake()
     {
@@ -40,9 +40,7 @@ public class ScrollMenu : MonoBehaviour
             
             //check each item from the first one, a list of distance to the screen middle 
             float dist = Mathf.Abs(content.GetChild(i).transform.position.x - middle.position.x);
-
-
-
+            
             //if the item distance is less than screen middle
             if (dist < minDistance)
             {
@@ -53,8 +51,6 @@ public class ScrollMenu : MonoBehaviour
                 // assign the closest object to the qualified one
                 closestObject = content.GetChild(i);
             }
-
-
         }
 
         if(closest != closestObject)
@@ -81,6 +77,6 @@ public class ScrollMenu : MonoBehaviour
     {
         selectedItemDisplay.text = item.itemName != "" ? item.itemName : "-";
         selectedIndicator.gameObject.SetActive(true);
-        objectPlacing.UpdateModel(item.itemModel);
+        objectPlacing.UpdateModel(item.itemPrefab);
     }
 }
