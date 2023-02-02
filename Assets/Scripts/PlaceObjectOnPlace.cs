@@ -38,7 +38,6 @@ public class PlaceObjectOnPlace : MonoBehaviour
 
     private void UpdatePlacementPose()
     {
-        //The center of the screen
         var screenCenter = aRCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
 
         var hits = new List<ARRaycastHit>();
@@ -48,7 +47,6 @@ public class PlaceObjectOnPlace : MonoBehaviour
 
         if (!canPlace) return;
         
-        //The placementPosition = the first ray hit the plane
         placementPose = hits[0].pose;
         var cameraForward = aRCamera.transform.forward;
         var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
@@ -59,7 +57,6 @@ public class PlaceObjectOnPlace : MonoBehaviour
     private void PlaceObject()
     {
         if (currentlyPlaced != null) return;
-        // TODO: Find selected drink
         currentlyPlaced = Instantiate(drinkPrefab, placementPose.position, placementPose.rotation);
     }
 

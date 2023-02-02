@@ -7,7 +7,7 @@ public class IntroCanvas : MonoBehaviour
     [SerializeField] private Button confirmButton;
     [SerializeField] private GameObject mainCanvas;
 
-    private void Awake()
+    private void Start()
     {
         mainCanvas.SetActive(false);
     }
