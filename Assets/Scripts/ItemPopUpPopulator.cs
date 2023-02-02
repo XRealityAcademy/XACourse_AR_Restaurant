@@ -18,7 +18,7 @@ public class ItemPopUpPopulator : MonoBehaviour
     private void OnEnable() => openBase.onGrab += Populate;
     private void OnDisable() => openBase.onGrab -= Populate;
 
-    private void Populate()
+    public void Populate()
     {
         var item = itemMenu.SelectedItem;
 

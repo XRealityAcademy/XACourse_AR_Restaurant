@@ -9,6 +9,9 @@ public class ItemPopUpAnimator : MonoBehaviour
     [SerializeField] private float minMovement;
     [SerializeField] private float minAnimVel;
     [SerializeField] private float maxAnimVel = 8f;
+    [SerializeField] private AnimationCurve openCurve;
+    [SerializeField] private AnimationCurve closeCurve;
+    [SerializeField] private float animationLength = .8f;
     [SerializeField] private float velocitySmoothing = 10f;
     [SerializeField] private float referenceHeight = 1080f;
 
@@ -24,7 +27,6 @@ public class ItemPopUpAnimator : MonoBehaviour
     private void Awake()
     {
         _totalDistance = Vector2.Distance(startPos.localPosition, endPos.localPosition);
-        _pixelMultipl = Screen.currentResolution.height / referenceHeight;
     }
 
     private void OnEnable()
@@ -94,20 +96,12 @@ public class ItemPopUpAnimator : MonoBehaviour
 
     public void Open()
     {
-        var distToMove = Vector2.Distance(transform.localPosition, endPos.localPosition);
-        
-        var time = distToMove / maxAnimVel;
-        time *= Time.deltaTime;
-        LeanTween.moveLocalY(gameObject, endPos.localPosition.y, time).setEaseOutCirc();
+        LeanTween.moveLocalY(gameObject, endPos.localPosition.y, animationLength).setEase(openCurve);
     }
 
     public void Close()
     {
-        var distToMove = Vector2.Distance(transform.localPosition, startPos.localPosition);
-        
-        var time = distToMove / minAnimVel;
-        time *= Time.deltaTime;
-        LeanTween.moveLocalY(gameObject, startPos.localPosition.y, time).setEaseOutCirc();
+        LeanTween.moveLocalY(gameObject, startPos.localPosition.y, animationLength).setEase(closeCurve);
     }
 
     float GetVel()
