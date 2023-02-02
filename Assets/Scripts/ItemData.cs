@@ -20,7 +20,10 @@ public class ItemData : MonoBehaviour
     {
         var previewImage = transform.GetChild(0).GetComponent<Image>();
         if (previewImage != null)
+        {
             previewImage.sprite = itemPreview;
+            previewImage.preserveAspect = true;
+        }
     }
 
     public string PriceString()
