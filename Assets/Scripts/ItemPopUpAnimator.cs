@@ -96,7 +96,7 @@ public class ItemPopUpAnimator : MonoBehaviour
     {
         var distToMove = Vector2.Distance(transform.localPosition, endPos.localPosition);
         
-        var time = distToMove / minAnimVel;
+        var time = distToMove / maxAnimVel;
         time *= Time.deltaTime;
         LeanTween.moveLocalY(gameObject, endPos.localPosition.y, time).setEaseOutCirc();
     }

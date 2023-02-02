@@ -4302,8 +4302,8 @@ MonoBehaviour:
   startPos: {fileID: 319327630}
   endPos: {fileID: 1483112493}
   minMovement: 200
-  minAnimVel: 8
-  maxAnimVel: 8
+  minAnimVel: 9
+  maxAnimVel: 14
   velocitySmoothing: 30
   referenceHeight: 1920
 --- !u!114 &1883655725
