@@ -92,6 +92,15 @@ public class ItemPopUpAnimator : MonoBehaviour
         _currentYVel = 0f;
     }
 
+    public void Open()
+    {
+        var distToMove = Vector2.Distance(transform.localPosition, endPos.localPosition);
+        
+        var time = distToMove / GetVel();
+        time *= Time.deltaTime;
+        LeanTween.moveLocalY(gameObject, endPos.localPosition.y, time).setEaseOutQuint();
+    }
+
     public void Close()
     {
         var distToMove = Vector2.Distance(transform.localPosition, startPos.localPosition);

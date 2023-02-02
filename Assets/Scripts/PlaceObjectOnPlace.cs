@@ -56,7 +56,7 @@ public class PlaceObjectOnPlace : MonoBehaviour
 
     private void PlaceObject()
     {
-        if (currentlyPlaced != null) return;
+        if (currentlyPlaced != null || drinkPrefab == null) return;
         currentlyPlaced = Instantiate(drinkPrefab, placementPose.position, placementPose.rotation);
     }
 
