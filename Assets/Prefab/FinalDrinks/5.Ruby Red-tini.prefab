@@ -3384,7 +3384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8255298000117707508}
   m_Layer: 0
-  m_Name: Drink 6
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
