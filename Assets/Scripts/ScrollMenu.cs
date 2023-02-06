@@ -75,6 +75,7 @@ public class ScrollMenu : MonoBehaviour
 
     public void OnNewClosestObject(ItemData item)
     {
+        print("On New Closest");
         selectedItemDisplay.text = item.itemName != "" ? item.itemName : "-";
         selectedIndicator.gameObject.SetActive(true);
         objectPlacing.UpdateModel(item.itemPrefab);
