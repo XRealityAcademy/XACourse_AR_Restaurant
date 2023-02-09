@@ -11,6 +11,8 @@ public class ScrollMenu : MonoBehaviour
     [SerializeField] private PlaceObjectOnPlace objectPlacing;
     [SerializeField] private RectTransform selectedIndicator;
     [SerializeField] private TextMeshProUGUI selectedItemDisplay;
+    [SerializeField] private TextMeshProUGUI priceDisplay;
+    [SerializeField] private string pricePrefix;
     
     private Transform closest;
 
@@ -77,6 +79,7 @@ public class ScrollMenu : MonoBehaviour
     {
         print("On New Closest");
         selectedItemDisplay.text = item.itemName != "" ? item.itemName : "-";
+        priceDisplay.text = pricePrefix + item.price;
         selectedIndicator.gameObject.SetActive(true);
         objectPlacing.UpdateModel(item.itemPrefab);
     }
